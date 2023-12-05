@@ -12,10 +12,13 @@
   "dependencies": {
     "@apollo/client": "^3.8.8",
     "@brainhubeu/react-carousel": "^2.0.4",
+    "@stripe/react-stripe-js": "^2.4.0",
     "graphql": "^16.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.20.0"
+    "react-router": "^6.20.1",
+    "react-router-dom": "^6.20.0",
+    "react-use-cart": "^1.13.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.37",

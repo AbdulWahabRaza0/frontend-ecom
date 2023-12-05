@@ -1,7 +1,9 @@
 import { useMutation } from "@apollo/client";
+import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { LOGIN_USER } from "../gqloperations/mutation";
 const Login = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     identifier: "",
     password: "",
@@ -13,7 +15,8 @@ const Login = () => {
     console.log(error);
   }
   if (data) {
-    console.log("logged in user is ", data);
+    localStorage.setItem("jwt", data.login.jwt);
+    navigate("/");
   }
   const handleChange = (e) => {
     setFormData({
@@ -51,6 +54,8 @@ const Login = () => {
             onChange={handleChange}
             required
           />
+          <br />
+          <br />
           <button type="submit" className="btn blue">
             Login
           </button>

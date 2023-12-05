@@ -2,6 +2,7 @@ import "./App.css";
 import "@brainhubeu/react-carousel/lib/style.css";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 import { BrowserRouter, useRoutes } from "react-router-dom";
+import { CartProvider } from "react-use-cart";
 import Nav from "./components/Nav";
 import routes from "./routes.jsx";
 const client = new ApolloClient({
@@ -21,9 +22,11 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <ApolloProvider client={client}>
-          <Routes />
-        </ApolloProvider>
+        <CartProvider>
+          <ApolloProvider client={client}>
+            <Routes />
+          </ApolloProvider>
+        </CartProvider>
       </BrowserRouter>
     </>
   );

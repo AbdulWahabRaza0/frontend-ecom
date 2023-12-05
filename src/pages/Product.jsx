@@ -4,8 +4,10 @@ import { GET_PRODUCT } from "../gqloperations/quries";
 import { BACKEND_URL } from "../helpers.js";
 import { RenderJSONData } from "../components/Card";
 import Carousel from "@brainhubeu/react-carousel";
+import { useCart } from "react-use-cart";
 const Product = () => {
   const { pid } = useParams();
+  const { addItem } = useCart();
   const { loading, error, data } = useQuery(GET_PRODUCT, {
     variables: {
       productId: pid,
@@ -19,6 +21,14 @@ const Product = () => {
     console.log("This is our data ", data);
   }
   const { name, price, description, images } = data.product.data.attributes;
+  const addToCart = () => {
+    addItem({
+      id: pid,
+      name,
+      price,
+      img: BACKEND_URL + images.data[0].attributes.url,
+    });
+  };
   return (
     <>
       <div className="container">
@@ -45,7 +55,9 @@ const Product = () => {
           <p>
             <RenderJSONData data={description} />
           </p>
-          <button className="btn blue">Add to Card</button>
+          <button className="btn blue" onClick={addToCart}>
+            Add to Card
+          </button>
         </div>
       </div>
     </>
