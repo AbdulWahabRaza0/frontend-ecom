@@ -6,8 +6,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const { isEmpty, items, cartTotal, removeItem } = useCart();
   const [checkout, setCheckout] = useState(false);
-  if (isEmpty) return <h1>Your Cart is empty</h1>;
-  if (items) console.log("I am here ", items);
+
   const jwt = localStorage.getItem("jwt");
   if (checkout) {
     return (
@@ -27,6 +26,8 @@ const Cart = () => {
       </>
     );
   }
+  if (isEmpty) return <h1>Your Cart is empty</h1>;
+  // if (items) console.log("I am here ", items);
   return (
     <>
       <div className="row">
@@ -81,9 +82,7 @@ const Cart = () => {
               <button
                 className="btn red"
                 onClick={() => {
-                  if (jwt) {
-                    console.log("valid");
-                  }
+                  navigate("/login");
                 }}
               >
                 Please login to checkout
